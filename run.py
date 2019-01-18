@@ -60,11 +60,11 @@ for i in range(0,100000000000000000000000000000):
 fileDescriptors = []
 
 for thing in seen.keys():
-	fileDescriptors.append(-1)
+	# fileDescriptors.append(-1)
+	os.mkdir('./outputFastqs/'+thing)
 
 	# if counts[thing] > 69363:
-	os.mkdir('./outputFastqs/'+thing)
-	fileDescriptors[seen[thing]] = open('./outputFastqs/'+thing+'/'+thing+".fastq", "w")
+	# fileDescriptors[seen[thing]] = open('./outputFastqs/'+thing+'/'+thing+".fastq", "w")
 
 	# print(counts[thing])
 
