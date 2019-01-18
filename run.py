@@ -38,11 +38,17 @@ for i in range(0,100000000000000000000000000000):
 
 	#print(tmp[0:10])
 
+	if "N" in tmp[0:10]: 
+		print("skipping")
+		continue
+
 	if tmp[0:10] in seen.keys():
 		destinationFileIdList.append(seen[tmp[0:10]])
 		counts[tmp[0:10]] += 1
+		outputFile = "./outputFastqs/" + tmp[0:10] + ".fastq"
 
 	else:
+		outputFile = "./outputFastqs/" + tmp[0:10] + ".fastq"
 		seen[tmp[0:10]]=filenumber
 		fnamelist.append(tmp[0:10])
 		counts[tmp[0:10]] = 1
@@ -55,46 +61,38 @@ for i in range(0,100000000000000000000000000000):
 	fd1.readline()
 	fd1.readline()
 
-# skip this version in production
-
-fileDescriptors = []
-
-for thing in seen.keys():
-	# fileDescriptors.append(-1)
-	os.mkdir('./outputFastqs/'+thing)
-
-	# if counts[thing] > 69363:
-	# fileDescriptors[seen[thing]] = open('./outputFastqs/'+thing+'/'+thing+".fastq", "w")
-
-	# print(counts[thing])
-
-trash = open("/dev/null", 'w')
 	
-# for basename in fnamelist:
+	fd3 = open(outputFile, "a+")
+
+	fd3.write(fd2.readline())
+	fd3.write(fd2.readline())
+	fd3.write(fd2.readline())
+	fd3.write(fd2.readline())
+
+	fd3.close()
+
 
 
 #these changes will cause it to run very slow but it will at least get the job done.
-for i in range(0, 10000000000000000000000000):
-	#if fileDescriptors[destinationFileIdList[i]]:
+#for i in range(0, 10000000000000000000000000):
 
-	if counts[fnamelist[nestedList[i]]] > 10000:
+#	if counts[fnamelist[nestedList[i]]] > 10000:
+ 
+#		os.mkdir('./outputFastqs/'+fnamelist[nestedList[i])
+#		fd = open('./outputFastqs/'+fnamelist[nestedList[i]]+'/'+fnamelist[nestedList[i]], "a+")
+#		#else:
+#		#	fd = trash
 
+#		tmp = fd2.readline()
 
-		fd = open('./outputFastqs/'+fnamelist[nestedList[i]]+'/'+fnamelist[nestedList[i]], "a+")
-		#else:
-		#	fd = trash
+#		if tmp == "":
+#			break
 
-		tmp = fd2.readline()
+#		fd.write(tmp)
+#		fd.write(fd2.readline())
+#		fd.write(fd2.readline())
+#		fd.write(fd2.readline())
 
-		if tmp == "":
-			break
-
-		fd.write(tmp)
-		fd.write(fd2.readline())
-		fd.write(fd2.readline())
-		fd.write(fd2.readline())
-
-		fd.close()
-
+#		fd.close()
 
 
