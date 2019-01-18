@@ -62,9 +62,9 @@ fileDescriptors = []
 for thing in seen.keys():
 	fileDescriptors.append(-1)
 
-	if counts[thing] > 69363:
-		os.mkdir('./outputFastqs/'+thing)
-		fileDescriptors[seen[thing]] = open('./outputFastqs/'+thing+'/'+thing+".fastq", "w")
+	# if counts[thing] > 69363:
+	os.mkdir('./outputFastqs/'+thing)
+	fileDescriptors[seen[thing]] = open('./outputFastqs/'+thing+'/'+thing+".fastq", "w")
 
 	# print(counts[thing])
 
@@ -72,24 +72,25 @@ trash = open("/dev/null", 'w')
 	
 # for basename in fnamelist:
 
+
+#these changes will cause it to run very slow but it will at least get the job done.
 for i in range(0, 10000000000000000000000000):
 	#if fileDescriptors[destinationFileIdList[i]]:
-		fd = open(fnamelist[nestedList[i]], "a+")
+	fd = open('./outputFastqs/'+fnamelist[nestedList[i]]+'/'+fnamelist[nestedList[i]], "a+")
 	#else:
 	#	fd = trash
 
-	tmp = fd.readline()
+	tmp = fd2.readline()
 
 	if tmp == "":
 		break
 
 	fd.write(tmp)
-	fd.write(fd.readline())
-	fd.write(fd.readline())
-	fd.write(fd.readline())
+	fd.write(fd2.readline())
+	fd.write(fd2.readline())
+	fd.write(fd2.readline())
 
 	fd.close()
 
-	# fd3.close()
 
 
