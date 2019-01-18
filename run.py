@@ -76,21 +76,25 @@ trash = open("/dev/null", 'w')
 #these changes will cause it to run very slow but it will at least get the job done.
 for i in range(0, 10000000000000000000000000):
 	#if fileDescriptors[destinationFileIdList[i]]:
-	fd = open('./outputFastqs/'+fnamelist[nestedList[i]]+'/'+fnamelist[nestedList[i]], "a+")
-	#else:
-	#	fd = trash
 
-	tmp = fd2.readline()
+	if counts[fnamelist[nestedList[i]]] > 10000:
 
-	if tmp == "":
-		break
 
-	fd.write(tmp)
-	fd.write(fd2.readline())
-	fd.write(fd2.readline())
-	fd.write(fd2.readline())
+		fd = open('./outputFastqs/'+fnamelist[nestedList[i]]+'/'+fnamelist[nestedList[i]], "a+")
+		#else:
+		#	fd = trash
 
-	fd.close()
+		tmp = fd2.readline()
+
+		if tmp == "":
+			break
+
+		fd.write(tmp)
+		fd.write(fd2.readline())
+		fd.write(fd2.readline())
+		fd.write(fd2.readline())
+
+		fd.close()
 
 
 
